@@ -76,19 +76,23 @@ const btn = document.querySelector(".stopwatch__btn");
 const secCounter = document.querySelector(".stopwatch__seconds");
 const minCounter = document.querySelector(".stopwatch__minutes");
 const hourCounter = document.querySelector(".stopwatch__hours");
-
+const pause = document.querySelector('.block_wrapper');
+const block = document.querySelectorAll('.block')
 btn.addEventListener("click", function () {
   if (btn.innerHTML == "start") {
     btn.innerHTML = "stop";
     let i = 0;
     stopWatch(this, i);
+    pause.style.opacity = '0'
   } else if (btn.innerHTML == "stop") {
     btn.innerHTML = "clear";
+    pause.style.opacity = '1'
     minCounter.style.color = 'yellow'
     secCounter.style.color = 'yellow'
     hourCounter.style.color = 'yellow'
   } else if (btn.innerHTML == "clear") {
     btn.innerHTML = "start";
+    pause.style.opacity = '0'
     minCounter.style.color = ''
     secCounter.style.color = ''
     hourCounter.style.color = ''
@@ -107,13 +111,13 @@ function stopWatch(btn, i) {
     secCounter.style.color = 'green'
     if (secCounter.innerHTML == 60) {
       minCounter.innerHTML++;
-      minCounter.style.color = 'green'
       secCounter.innerHTML = 0;
+      minCounter.style.color = 'green'
     }
     if (minCounter.innerHTML == 60) {
       hourCounter.innerHTML++;
-      hourCounter.style.color = 'green'
       minCounter.innerHTML = 0;
+      hourCounter.style.color = 'green'
     }
     setTimeout(() => {
       stopWatch(btn, i);
